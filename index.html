@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Collection of web prototypes designed to solve real problems. Mobile-first, responsive, and accessible.">
+    <meta name="theme-color" content="#3b82f6">
+    <title>CC-Ideas | Web Prototypes Collection</title>
+
+    <!-- Shared styles -->
+    <link rel="stylesheet" href="shared/styles/mobile-first.css">
+
+    <!-- Page-specific styles -->
+    <style>
+        :root {
+            --hero-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .hero {
+            background: var(--hero-gradient);
+            color: white;
+            padding: var(--spacing-2xl) var(--spacing-md);
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .hero h1 {
+            color: white;
+            font-size: var(--font-size-4xl);
+            margin-bottom: var(--spacing-md);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: var(--font-size-lg);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .prototype-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        @media (min-width: 768px) {
+            .prototype-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .prototype-card {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            transition: all var(--transition-base);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prototype-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary-color);
+            transform: scaleY(0);
+            transition: transform var(--transition-base);
+        }
+
+        .prototype-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .prototype-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .prototype-card h3 {
+            color: var(--text-color);
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .prototype-card .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+        }
+
+        .status-planned {
+            background-color: rgba(107, 114, 128, 0.1);
+            color: var(--text-secondary);
+        }
+
+        .status-in-progress {
+            background-color: rgba(245, 158, 11, 0.1);
+            color: var(--warning-color);
+        }
+
+        .status-complete {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--accent-color);
+        }
+
+        .prototype-card p {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .prototype-card .features {
+            list-style: none;
+            margin-bottom: var(--spacing-lg);
+            padding: 0;
+        }
+
+        .prototype-card .features li {
+            padding: var(--spacing-sm) 0;
+            color: var(--text-secondary);
+            font-size: var(--font-size-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .prototype-card .features li::before {
+            content: '✓';
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .disabled-card {
+            opacity: 0.6;
+        }
+
+        .disabled-card .btn {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .stat-card {
+            background: var(--bg-secondary);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            text-align: center;
+        }
+
+        .stat-card .number {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        .stat-card .label {
+            color: var(--text-secondary);
+            font-size: var(--font-size-sm);
+        }
+
+        .about-section {
+            background: var(--bg-secondary);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .about-section h2 {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .about-section ul {
+            margin-left: var(--spacing-lg);
+            color: var(--text-secondary);
+        }
+
+        .about-section li {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        footer {
+            background-color: var(--bg-secondary);
+            padding: var(--spacing-xl) var(--spacing-md);
+            text-align: center;
+            color: var(--text-secondary);
+            margin-top: var(--spacing-2xl);
+        }
+
+        footer a {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>CC-Ideas</h1>
+        <p>A collection of web prototypes solving real problems. Mobile-first, accessible, and ready to use.</p>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Stats -->
+        <div class="stats">
+            <div class="stat-card">
+                <span class="number" id="total-prototypes">4</span>
+                <span class="label">Prototypes</span>
+            </div>
+            <div class="stat-card">
+                <span class="number" id="completed-count">0</span>
+                <span class="label">Completed</span>
+            </div>
+            <div class="stat-card">
+                <span class="number" id="in-progress-count">0</span>
+                <span class="label">In Progress</span>
+            </div>
+        </div>
+
+        <!-- Prototypes Grid -->
+        <div class="prototype-grid">
+            <!-- Senior Connect Helper -->
+            <div class="prototype-card disabled-card">
+                <h3>
+                    Senior Connect Helper
+                    <span class="status-badge status-planned">Planned</span>
+                </h3>
+                <p>Help older adults understand and connect to technology - from WiFi vs cellular to streaming services on Roku.</p>
+                <ul class="features">
+                    <li>Simple, visual guides</li>
+                    <li>Step-by-step tutorials</li>
+                    <li>Large, easy-to-read text</li>
+                    <li>Common scenarios covered</li>
+                </ul>
+                <a href="ideas/senior-connect-helper/" class="btn btn-primary btn-block">Launch App →</a>
+            </div>
+
+            <!-- StreamFinder -->
+            <div class="prototype-card disabled-card">
+                <h3>
+                    StreamFinder
+                    <span class="status-badge status-planned">Planned</span>
+                </h3>
+                <p>JustWatch alternative that includes Plex and YouTube in your streaming search results.</p>
+                <ul class="features">
+                    <li>Search across all platforms</li>
+                    <li>Include Plex library</li>
+                    <li>YouTube integration</li>
+                    <li>Price comparison</li>
+                </ul>
+                <a href="ideas/streamfinder/" class="btn btn-primary btn-block">Launch App →</a>
+            </div>
+
+            <!-- Windows Security Tracker -->
+            <div class="prototype-card disabled-card">
+                <h3>
+                    Win10 Security Tracker
+                    <span class="status-badge status-planned">Planned</span>
+                </h3>
+                <p>Track virus growth and exploit count since Windows 10 end of support.</p>
+                <ul class="features">
+                    <li>Real-time vulnerability data</li>
+                    <li>Visual timeline charts</li>
+                    <li>Exploit trend analysis</li>
+                    <li>Security recommendations</li>
+                </ul>
+                <a href="ideas/windows-security-tracker/" class="btn btn-primary btn-block">Launch App →</a>
+            </div>
+
+            <!-- Lego Tracker -->
+            <div class="prototype-card disabled-card">
+                <h3>
+                    Lego Set Tracker
+                    <span class="status-badge status-planned">Planned</span>
+                </h3>
+                <p>Track retired Lego sets by scanning barcodes, maintain your collection, and see price charts over time.</p>
+                <ul class="features">
+                    <li>Barcode scanning</li>
+                    <li>Price history charts</li>
+                    <li>Collection management</li>
+                    <li>Retirement tracking</li>
+                </ul>
+                <a href="ideas/lego-tracker/" class="btn btn-primary btn-block">Launch App →</a>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <div class="about-section">
+            <h2>About This Collection</h2>
+            <p>This repository hosts multiple web-based prototype applications, all designed with mobile-first principles. Each prototype:</p>
+            <ul>
+                <li><strong>Works great on mobile</strong> - Designed for touch interfaces and small screens</li>
+                <li><strong>No installation required</strong> - Access directly from your browser</li>
+                <li><strong>Accessible</strong> - Built following WCAG 2.1 AA guidelines</li>
+                <li><strong>Fast & lightweight</strong> - Optimized for performance</li>
+                <li><strong>Open source</strong> - View the code and contribute on GitHub</li>
+            </ul>
+            <p><strong>Testing on Mobile:</strong> For the best experience, add these prototypes to your home screen on mobile devices. They'll function like native apps!</p>
+        </div>
+
+        <!-- Technical Info -->
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Technical Details</h3>
+                <p><strong>Built with:</strong> Vanilla HTML, CSS, and JavaScript (no frameworks required)</p>
+                <p><strong>Responsive:</strong> Mobile-first design that adapts to all screen sizes</p>
+                <p><strong>Hosted on:</strong> GitHub Pages</p>
+                <p><strong>Development:</strong> AI-assisted development following consistent patterns</p>
+                <p>See the <a href="https://github.com/rtgoodwin/cc-ideas">GitHub repository</a> for more details.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>CC-Ideas Prototypes Collection</p>
+        <p>Built with ❤️ using GitHub Pages</p>
+        <p><a href="https://github.com/rtgoodwin/cc-ideas">View on GitHub</a> | <a href="SPEC.md">Specification</a> | <a href="PLAN.md">Roadmap</a></p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="shared/scripts/utils.js"></script>
+    <script>
+        'use strict';
+
+        // Update stats on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.prototype-card');
+            const completedCount = document.querySelectorAll('.status-complete').length;
+            const inProgressCount = document.querySelectorAll('.status-in-progress').length;
+
+            document.getElementById('completed-count').textContent = completedCount;
+            document.getElementById('in-progress-count').textContent = inProgressCount;
+
+            // Add mobile detection class
+            if (Device.isMobile()) {
+                document.body.classList.add('mobile');
+            }
+
+            // Log visit (optional analytics)
+            console.log('Welcome to CC-Ideas prototypes!');
+            console.log('Device:', Device.isMobile() ? 'Mobile' : 'Desktop');
+            console.log('Viewport:', Device.getViewportWidth() + 'x' + Device.getViewportHeight());
+        });
+    </script>
+</body>
+</html>
