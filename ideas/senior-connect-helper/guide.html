@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Step-by-step tech guide for seniors">
+    <meta name="theme-color" content="#3b82f6">
+    <title>Guide | Senior Connect Helper</title>
+
+    <!-- Shared styles -->
+    <link rel="stylesheet" href="../../shared/styles/mobile-first.css">
+
+    <style>
+        /* Senior-friendly overrides */
+        :root {
+            --font-size-base: 18px;
+            --touch-target-min: 56px;
+        }
+
+        body {
+            font-size: var(--font-size-base);
+            line-height: 1.8;
+        }
+
+        .guide-header {
+            background: var(--bg-secondary);
+            padding: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .guide-header h1 {
+            font-size: var(--font-size-3xl);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .guide-meta {
+            display: flex;
+            gap: var(--spacing-lg);
+            flex-wrap: wrap;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .guide-meta span {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .guide-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step {
+            background: var(--bg-color);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            margin-bottom: var(--spacing-lg);
+            position: relative;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -16px;
+            left: var(--spacing-lg);
+            background: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: var(--font-size-lg);
+        }
+
+        .step h3 {
+            margin-top: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+            color: var(--primary-color);
+        }
+
+        .step p {
+            font-size: var(--font-size-lg);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .step-image {
+            width: 100%;
+            border-radius: var(--radius-md);
+            margin: var(--spacing-md) 0;
+            box-shadow: var(--shadow-md);
+        }
+
+        .tip-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--accent-color);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin: var(--spacing-md) 0;
+        }
+
+        .tip-box strong {
+            color: var(--accent-color);
+        }
+
+        .warning-box {
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 4px solid var(--warning-color);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin: var(--spacing-md) 0;
+        }
+
+        .warning-box strong {
+            color: var(--warning-color);
+        }
+
+        .related-guides {
+            margin-top: var(--spacing-2xl);
+            padding: var(--spacing-xl);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+        }
+
+        .related-guides h2 {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .related-grid {
+            display: grid;
+            gap: var(--spacing-md);
+        }
+
+        .related-card {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all var(--transition-base);
+        }
+
+        .related-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .related-card h4 {
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: var(--spacing-md);
+            margin: var(--spacing-2xl) 0;
+        }
+
+        .nav-buttons .btn {
+            flex: 1;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            padding: var(--spacing-md);
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: var(--font-size-lg);
+            font-weight: 500;
+        }
+
+        .loading {
+            text-align: center;
+            padding: var(--spacing-2xl);
+        }
+
+        @media print {
+            .back-link,
+            .nav-buttons,
+            .related-guides {
+                display: none;
+            }
+
+            .step {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← Back to All Guides</a>
+
+    <main class="container">
+        <div id="guideContent" class="loading">
+            <div class="spinner"></div>
+            <p>Loading guide...</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>Part of <a href="../../index.html">CC-Ideas</a> prototypes collection</p>
+    </footer>
+
+    <script src="../../shared/scripts/utils.js"></script>
+    <script>
+        'use strict';
+
+        let guideData = null;
+        let contentData = null;
+
+        // Get guide ID from URL
+        function getGuideId() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('id');
+        }
+
+        // Load and render guide
+        async function loadGuide() {
+            const guideId = getGuideId();
+
+            if (!guideId) {
+                showError('No guide specified');
+                return;
+            }
+
+            try {
+                // Load guide metadata
+                const guidesResponse = await fetch('data/guides.json');
+                guideData = await guidesResponse.json();
+
+                // Load guide content
+                const contentResponse = await fetch('data/guides-content.json');
+                contentData = await contentResponse.json();
+
+                // Find guide
+                const guide = guideData.guides.find(g => g.id === guideId);
+                const content = contentData[guideId];
+
+                if (!guide || !content) {
+                    showError('Guide not found');
+                    return;
+                }
+
+                // Update page title
+                document.title = `${guide.title} | Senior Connect Helper`;
+
+                // Render guide
+                renderGuide(guide, content);
+
+            } catch (error) {
+                console.error('Error loading guide:', error);
+                showError('Failed to load guide. Please try again.');
+            }
+        }
+
+        // Render guide content
+        function renderGuide(guide, content) {
+            const container = document.getElementById('guideContent');
+            container.className = 'guide-content';
+            container.innerHTML = '';
+
+            // Header
+            const header = document.createElement('div');
+            header.className = 'guide-header';
+            header.innerHTML = `
+                <h1>${guide.title}</h1>
+                <div class="guide-meta">
+                    <span>📚 <strong>${guide.difficulty}</strong></span>
+                    <span>⏱️ ${guide.estimatedTime}</span>
+                </div>
+                <p style="font-size: var(--font-size-lg); color: var(--text-secondary);">
+                    ${guide.description}
+                </p>
+            `;
+            container.appendChild(header);
+
+            // Steps
+            content.steps.forEach((step, index) => {
+                const stepEl = document.createElement('div');
+                stepEl.className = 'step';
+
+                let stepHTML = `
+                    <div class="step-number">${index + 1}</div>
+                    <h3>${step.title}</h3>
+                    <p>${step.instruction}</p>
+                `;
+
+                if (step.tip) {
+                    stepHTML += `
+                        <div class="tip-box">
+                            <strong>💡 Tip:</strong> ${step.tip}
+                        </div>
+                    `;
+                }
+
+                if (step.warning) {
+                    stepHTML += `
+                        <div class="warning-box">
+                            <strong>⚠️ Important:</strong> ${step.warning}
+                        </div>
+                    `;
+                }
+
+                stepEl.innerHTML = stepHTML;
+                container.appendChild(stepEl);
+            });
+
+            // Related guides
+            if (content.relatedGuides && content.relatedGuides.length > 0) {
+                renderRelatedGuides(container, content.relatedGuides);
+            }
+
+            // Navigation buttons
+            renderNavButtons(container);
+        }
+
+        // Render related guides
+        function renderRelatedGuides(container, relatedIds) {
+            const section = document.createElement('div');
+            section.className = 'related-guides';
+
+            const heading = document.createElement('h2');
+            heading.textContent = 'Related Guides';
+            section.appendChild(heading);
+
+            const grid = document.createElement('div');
+            grid.className = 'related-grid';
+
+            relatedIds.forEach(id => {
+                const guide = guideData.guides.find(g => g.id === id);
+                if (guide) {
+                    const card = document.createElement('a');
+                    card.className = 'related-card';
+                    card.href = `guide.html?id=${guide.id}`;
+                    card.innerHTML = `
+                        <h4>${guide.title}</h4>
+                        <p style="margin: 0; font-size: var(--font-size-sm);">
+                            ${guide.description}
+                        </p>
+                    `;
+                    grid.appendChild(card);
+                }
+            });
+
+            section.appendChild(grid);
+            container.appendChild(section);
+        }
+
+        // Render navigation buttons
+        function renderNavButtons(container) {
+            const navDiv = document.createElement('div');
+            navDiv.className = 'nav-buttons';
+            navDiv.innerHTML = `
+                <a href="index.html" class="btn btn-secondary">← Back to All Guides</a>
+                <button onclick="window.print()" class="btn btn-outline">🖨️ Print Guide</button>
+            `;
+            container.appendChild(navDiv);
+        }
+
+        // Show error
+        function showError(message) {
+            const container = document.getElementById('guideContent');
+            container.className = '';
+            container.innerHTML = `
+                <div class="alert alert-danger">
+                    <strong>Error:</strong> ${message}
+                </div>
+                <a href="index.html" class="btn btn-primary">Back to All Guides</a>
+            `;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', loadGuide);
+    </script>
+</body>
+</html>

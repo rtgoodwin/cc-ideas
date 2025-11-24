@@ -3,58 +3,570 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Help older adults understand and connect to technology">
+    <meta name="description" content="Help older adults understand and connect to technology - simple guides for WiFi, streaming, and more">
     <meta name="theme-color" content="#3b82f6">
     <title>Senior Connect Helper | CC-Ideas</title>
+
+    <!-- Shared styles -->
     <link rel="stylesheet" href="../../shared/styles/mobile-first.css">
+
+    <!-- App-specific styles -->
     <style>
-        .coming-soon {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 60vh;
-            text-align: center;
-            padding: var(--spacing-xl);
+        /* Senior-friendly overrides */
+        :root {
+            --font-size-base: 18px;  /* Larger base text */
+            --touch-target-min: 56px; /* Larger touch targets */
         }
-        .coming-soon h1 {
-            font-size: var(--font-size-4xl);
+
+        body {
+            font-size: var(--font-size-base);
+            line-height: 1.7;
+        }
+
+        .app-header {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: var(--spacing-xl) var(--spacing-md);
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .app-header h1 {
+            color: white;
+            font-size: var(--font-size-3xl);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .app-header p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: var(--font-size-lg);
+        }
+
+        .search-box {
+            position: sticky;
+            top: 0;
+            background: var(--bg-color);
+            padding: var(--spacing-md) 0;
+            z-index: var(--z-sticky);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .search-input {
+            width: 100%;
+            min-height: var(--touch-target-min);
+            padding: var(--spacing-md);
+            font-size: var(--font-size-lg);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-md);
+        }
+
+        .search-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .tabs {
+            display: flex;
+            overflow-x: auto;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 2px solid var(--border-color);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .tab {
+            flex-shrink: 0;
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: var(--bg-secondary);
+            border: none;
+            border-radius: var(--radius-md) var(--radius-md) 0 0;
+            font-size: var(--font-size-base);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            white-space: nowrap;
+            min-height: var(--touch-target-min);
+        }
+
+        .tab:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .tab.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .category-section {
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .category-icon {
+            font-size: 48px;
+        }
+
+        .category-info h2 {
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .category-info p {
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .guides-grid {
+            display: grid;
+            gap: var(--spacing-md);
+        }
+
+        .guide-card {
+            background: var(--bg-color);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all var(--transition-base);
+            position: relative;
+            min-height: var(--touch-target-min);
+        }
+
+        .guide-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .guide-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .guide-card h3 {
+            font-size: var(--font-size-xl);
+            margin-bottom: var(--spacing-xs);
+            color: var(--primary-color);
+        }
+
+        .favorite-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            padding: var(--spacing-xs);
+            line-height: 1;
+            opacity: 0.3;
+            transition: opacity var(--transition-fast);
+        }
+
+        .favorite-btn:hover,
+        .favorite-btn.active {
+            opacity: 1;
+        }
+
+        .guide-card p {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+            font-size: var(--font-size-base);
+        }
+
+        .guide-meta {
+            display: flex;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+        }
+
+        .badge-beginner {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent-color);
+        }
+
+        .badge-intermediate {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning-color);
+        }
+
+        .badge-advanced {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger-color);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: var(--spacing-2xl);
+            color: var(--text-secondary);
+        }
+
+        .empty-state .icon {
+            font-size: 64px;
             margin-bottom: var(--spacing-md);
         }
-        .coming-soon p {
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin-bottom: var(--spacing-xl);
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            padding: var(--spacing-md);
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: var(--font-size-lg);
+            font-weight: 500;
         }
-        .emoji {
-            font-size: 80px;
-            margin-bottom: var(--spacing-lg);
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .guide-card {
+                border-width: 3px;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .search-box,
+            .tabs,
+            .favorite-btn,
+            .back-link {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="../../index.html" class="back-link">← All Prototypes</a>
-        </nav>
-    </header>
+    <!-- Back link -->
+    <a href="../../index.html" class="back-link">← All Prototypes</a>
 
+    <!-- App Header -->
+    <div class="app-header">
+        <h1>Senior Connect Helper</h1>
+        <p>Simple guides for modern technology</p>
+    </div>
+
+    <!-- Main Content -->
     <main class="container">
-        <div class="coming-soon">
-            <div class="emoji">👵👴📱</div>
-            <h1>Senior Connect Helper</h1>
-            <p>An educational tool to help older adults understand and connect to technology - from WiFi vs cellular to streaming services on Roku.</p>
-            <div class="alert alert-info">
-                <strong>Status:</strong> Coming Soon! This prototype is in the planning phase.
-                <br><br>
-                See <a href="SPEC.md">SPEC.md</a> for detailed specifications and planned features.
-            </div>
-            <a href="../../index.html" class="btn btn-primary mt-lg">Back to All Prototypes</a>
+        <!-- Search -->
+        <div class="search-box">
+            <input
+                type="search"
+                id="searchInput"
+                class="search-input"
+                placeholder="Search guides..."
+                aria-label="Search guides"
+            >
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs" role="tablist">
+            <button class="tab active" role="tab" data-category="all" aria-selected="true">
+                All Guides
+            </button>
+            <button class="tab" role="tab" data-category="favorites" aria-selected="false">
+                ⭐ Favorites
+            </button>
+            <!-- Category tabs will be inserted here -->
+        </div>
+
+        <!-- Content Area -->
+        <div id="contentArea">
+            <!-- Categories and guides will be inserted here -->
         </div>
     </main>
 
+    <!-- Footer -->
     <footer>
+        <p>Need help? All guides are designed to be easy to follow.</p>
         <p>Part of <a href="../../index.html">CC-Ideas</a> prototypes collection</p>
     </footer>
+
+    <!-- Scripts -->
+    <script src="../../shared/scripts/utils.js"></script>
+    <script>
+        'use strict';
+
+        // App State
+        const App = {
+            data: null,
+            favorites: Storage.get('sch-favorites', []),
+            currentCategory: 'all',
+            searchQuery: ''
+        };
+
+        // Load data and initialize
+        async function init() {
+            try {
+                const response = await fetch('data/guides.json');
+                App.data = await response.json();
+
+                renderCategoryTabs();
+                renderContent();
+                setupEventListeners();
+            } catch (error) {
+                console.error('Error loading guides:', error);
+                showError('Failed to load guides. Please refresh the page.');
+            }
+        }
+
+        // Render category tabs
+        function renderCategoryTabs() {
+            const tabs = document.querySelector('.tabs');
+
+            App.data.categories.forEach(category => {
+                const tab = DOM.create('button', {
+                    className: 'tab',
+                    role: 'tab',
+                    'aria-selected': 'false',
+                    dataset: { category: category.id }
+                }, `${category.icon} ${category.name}`);
+
+                tabs.appendChild(tab);
+            });
+        }
+
+        // Render content based on current state
+        function renderContent() {
+            const contentArea = document.getElementById('contentArea');
+            contentArea.innerHTML = '';
+
+            let filteredGuides = getFilteredGuides();
+
+            if (App.currentCategory === 'favorites') {
+                renderFavorites(contentArea, filteredGuides);
+            } else if (App.currentCategory === 'all') {
+                renderAllCategories(contentArea, filteredGuides);
+            } else {
+                renderSingleCategory(contentArea, filteredGuides);
+            }
+        }
+
+        // Get filtered guides based on search
+        function getFilteredGuides() {
+            let guides = App.data.guides;
+
+            // Filter by category
+            if (App.currentCategory !== 'all' && App.currentCategory !== 'favorites') {
+                guides = guides.filter(g => g.category === App.currentCategory);
+            }
+
+            // Filter by favorites
+            if (App.currentCategory === 'favorites') {
+                guides = guides.filter(g => App.favorites.includes(g.id));
+            }
+
+            // Filter by search query
+            if (App.searchQuery) {
+                const query = App.searchQuery.toLowerCase();
+                guides = guides.filter(g =>
+                    g.title.toLowerCase().includes(query) ||
+                    g.description.toLowerCase().includes(query)
+                );
+            }
+
+            return guides;
+        }
+
+        // Render all categories
+        function renderAllCategories(container, guides) {
+            App.data.categories.forEach(category => {
+                const categoryGuides = guides.filter(g => g.category === category.id);
+
+                if (categoryGuides.length > 0) {
+                    renderCategorySection(container, category, categoryGuides);
+                }
+            });
+
+            if (guides.length === 0) {
+                showEmptyState(container, 'No guides found', 'Try a different search term');
+            }
+        }
+
+        // Render single category
+        function renderSingleCategory(container, guides) {
+            const category = App.data.categories.find(c => c.id === App.currentCategory);
+
+            if (guides.length > 0) {
+                renderCategorySection(container, category, guides);
+            } else {
+                showEmptyState(container, 'No guides found', 'Try a different search term');
+            }
+        }
+
+        // Render favorites
+        function renderFavorites(container, guides) {
+            if (guides.length === 0) {
+                showEmptyState(
+                    container,
+                    'No favorites yet',
+                    'Tap the ⭐ star on any guide to save it here'
+                );
+                return;
+            }
+
+            const section = DOM.create('div', { className: 'category-section' });
+            const header = DOM.create('div', { className: 'category-header' });
+            header.innerHTML = `
+                <div class="category-icon">⭐</div>
+                <div class="category-info">
+                    <h2>Your Favorites</h2>
+                    <p>${guides.length} saved guide${guides.length !== 1 ? 's' : ''}</p>
+                </div>
+            `;
+            section.appendChild(header);
+
+            const grid = DOM.create('div', { className: 'guides-grid' });
+            guides.forEach(guide => {
+                grid.appendChild(createGuideCard(guide));
+            });
+            section.appendChild(grid);
+            container.appendChild(section);
+        }
+
+        // Render a category section
+        function renderCategorySection(container, category, guides) {
+            const section = DOM.create('div', { className: 'category-section' });
+
+            const header = DOM.create('div', { className: 'category-header' });
+            header.innerHTML = `
+                <div class="category-icon">${category.icon}</div>
+                <div class="category-info">
+                    <h2>${category.name}</h2>
+                    <p>${category.description}</p>
+                </div>
+            `;
+            section.appendChild(header);
+
+            const grid = DOM.create('div', { className: 'guides-grid' });
+            guides.forEach(guide => {
+                grid.appendChild(createGuideCard(guide));
+            });
+            section.appendChild(grid);
+
+            container.appendChild(section);
+        }
+
+        // Create guide card
+        function createGuideCard(guide) {
+            const card = DOM.create('a', {
+                className: 'guide-card',
+                href: `guide.html?id=${guide.id}`
+            });
+
+            const header = DOM.create('div', { className: 'guide-card-header' });
+
+            const title = DOM.create('h3', {}, guide.title);
+            header.appendChild(title);
+
+            const favoriteBtn = DOM.create('button', {
+                className: 'favorite-btn' + (App.favorites.includes(guide.id) ? ' active' : ''),
+                'aria-label': 'Toggle favorite',
+                onClick: (e) => toggleFavorite(e, guide.id)
+            }, App.favorites.includes(guide.id) ? '⭐' : '☆');
+            header.appendChild(favoriteBtn);
+
+            card.appendChild(header);
+
+            const description = DOM.create('p', {}, guide.description);
+            card.appendChild(description);
+
+            const meta = DOM.create('div', { className: 'guide-meta' });
+            meta.innerHTML = `
+                <span class="badge badge-${guide.difficulty}">${guide.difficulty}</span>
+                <span>⏱️ ${guide.estimatedTime}</span>
+            `;
+            card.appendChild(meta);
+
+            return card;
+        }
+
+        // Show empty state
+        function showEmptyState(container, title, message) {
+            const emptyState = DOM.create('div', { className: 'empty-state' });
+            emptyState.innerHTML = `
+                <div class="icon">🔍</div>
+                <h3>${title}</h3>
+                <p>${message}</p>
+            `;
+            container.appendChild(emptyState);
+        }
+
+        // Show error
+        function showError(message) {
+            const contentArea = document.getElementById('contentArea');
+            contentArea.innerHTML = `
+                <div class="alert alert-danger">
+                    <strong>Error:</strong> ${message}
+                </div>
+            `;
+        }
+
+        // Toggle favorite
+        function toggleFavorite(e, guideId) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const index = App.favorites.indexOf(guideId);
+            if (index > -1) {
+                App.favorites.splice(index, 1);
+            } else {
+                App.favorites.push(guideId);
+            }
+
+            Storage.set('sch-favorites', App.favorites);
+            renderContent();
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Tab clicks
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Update active state
+                    document.querySelectorAll('.tab').forEach(t => {
+                        t.classList.remove('active');
+                        t.setAttribute('aria-selected', 'false');
+                    });
+                    tab.classList.add('active');
+                    tab.setAttribute('aria-selected', 'true');
+
+                    // Update current category
+                    App.currentCategory = tab.dataset.category;
+                    renderContent();
+                });
+            });
+
+            // Search input
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', debounce((e) => {
+                App.searchQuery = e.target.value.trim();
+                renderContent();
+            }, 300));
+        }
+
+        // Initialize app on page load
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
 </body>
 </html>

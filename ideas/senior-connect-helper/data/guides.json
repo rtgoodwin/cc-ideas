@@ -1,0 +1,190 @@
+{
+  "categories": [
+    {
+      "id": "internet",
+      "name": "Internet & WiFi",
+      "icon": "📶",
+      "description": "Understanding and connecting to the internet"
+    },
+    {
+      "id": "streaming",
+      "name": "Streaming Services",
+      "icon": "📺",
+      "description": "Using Roku, Netflix, and other streaming platforms"
+    },
+    {
+      "id": "phone",
+      "name": "Basic Phone Use",
+      "icon": "📱",
+      "description": "Essential smartphone features and tasks"
+    },
+    {
+      "id": "safety",
+      "name": "Safety & Security",
+      "icon": "🔒",
+      "description": "Staying safe online and avoiding scams"
+    }
+  ],
+  "guides": [
+    {
+      "id": "wifi-vs-cellular",
+      "category": "internet",
+      "title": "What is WiFi vs Cellular Data?",
+      "description": "Learn the difference between WiFi and cellular data, and when to use each.",
+      "difficulty": "beginner",
+      "estimatedTime": "5 min"
+    },
+    {
+      "id": "connect-wifi",
+      "category": "internet",
+      "title": "How to Connect to WiFi",
+      "description": "Step-by-step guide to connecting your device to a WiFi network.",
+      "difficulty": "beginner",
+      "estimatedTime": "3 min"
+    },
+    {
+      "id": "wifi-no-internet",
+      "category": "internet",
+      "title": "Why Does My WiFi Say 'No Internet'?",
+      "description": "Troubleshoot common WiFi connection problems.",
+      "difficulty": "beginner",
+      "estimatedTime": "5 min"
+    },
+    {
+      "id": "wifi-toggle",
+      "category": "internet",
+      "title": "How to Turn WiFi On/Off",
+      "description": "Find and use the WiFi toggle on your device.",
+      "difficulty": "beginner",
+      "estimatedTime": "2 min"
+    },
+    {
+      "id": "data-usage",
+      "category": "internet",
+      "title": "Understanding Data Usage",
+      "description": "Learn what uses data and how to monitor your usage.",
+      "difficulty": "intermediate",
+      "estimatedTime": "7 min"
+    },
+    {
+      "id": "roku-wifi",
+      "category": "streaming",
+      "title": "How to Connect Roku to WiFi",
+      "description": "Connect your Roku device to your home WiFi network.",
+      "difficulty": "beginner",
+      "estimatedTime": "5 min"
+    },
+    {
+      "id": "find-netflix",
+      "category": "streaming",
+      "title": "Finding Netflix on Your Roku",
+      "description": "Locate and open Netflix on your Roku home screen.",
+      "difficulty": "beginner",
+      "estimatedTime": "3 min"
+    },
+    {
+      "id": "search-shows",
+      "category": "streaming",
+      "title": "How to Search for Shows",
+      "description": "Use the search feature to find movies and TV shows.",
+      "difficulty": "beginner",
+      "estimatedTime": "4 min"
+    },
+    {
+      "id": "streaming-subscriptions",
+      "category": "streaming",
+      "title": "Understanding Subscription Services",
+      "description": "Learn about Netflix, Hulu, Prime Video, and how they work.",
+      "difficulty": "beginner",
+      "estimatedTime": "6 min"
+    },
+    {
+      "id": "buffering-fix",
+      "category": "streaming",
+      "title": "Troubleshooting Buffering Issues",
+      "description": "Fix videos that keep pausing or loading slowly.",
+      "difficulty": "intermediate",
+      "estimatedTime": "5 min"
+    },
+    {
+      "id": "video-call",
+      "category": "phone",
+      "title": "How to Make a Video Call",
+      "description": "Start a video call with FaceTime, WhatsApp, or Zoom.",
+      "difficulty": "beginner",
+      "estimatedTime": "5 min"
+    },
+    {
+      "id": "text-with-pictures",
+      "category": "phone",
+      "title": "Sending Text Messages with Pictures",
+      "description": "Attach and send photos in your text messages.",
+      "difficulty": "beginner",
+      "estimatedTime": "4 min"
+    },
+    {
+      "id": "notifications",
+      "category": "phone",
+      "title": "Understanding Notifications",
+      "description": "Learn what notifications are and how to manage them.",
+      "difficulty": "beginner",
+      "estimatedTime": "5 min"
+    },
+    {
+      "id": "battery-management",
+      "category": "phone",
+      "title": "Managing Your Battery",
+      "description": "Tips to make your phone battery last longer.",
+      "difficulty": "intermediate",
+      "estimatedTime": "6 min"
+    },
+    {
+      "id": "photos-sharing",
+      "category": "phone",
+      "title": "Taking and Sharing Photos",
+      "description": "Use your camera and share photos with family.",
+      "difficulty": "beginner",
+      "estimatedTime": "5 min"
+    },
+    {
+      "id": "recognize-scams",
+      "category": "safety",
+      "title": "Recognizing Scam Emails",
+      "description": "Learn to identify and avoid phishing emails and scams.",
+      "difficulty": "intermediate",
+      "estimatedTime": "8 min"
+    },
+    {
+      "id": "strong-passwords",
+      "category": "safety",
+      "title": "Creating Strong Passwords",
+      "description": "Make passwords that are secure and easy to remember.",
+      "difficulty": "beginner",
+      "estimatedTime": "5 min"
+    },
+    {
+      "id": "app-permissions",
+      "category": "safety",
+      "title": "Understanding App Permissions",
+      "description": "Learn what apps can access and how to control it.",
+      "difficulty": "intermediate",
+      "estimatedTime": "6 min"
+    },
+    {
+      "id": "safe-shopping",
+      "category": "safety",
+      "title": "Safe Online Shopping",
+      "description": "Shop online safely and protect your credit card info.",
+      "difficulty": "intermediate",
+      "estimatedTime": "7 min"
+    },
+    {
+      "id": "two-factor-auth",
+      "category": "safety",
+      "title": "Two-Factor Authentication Explained",
+      "description": "Add an extra layer of security to your accounts.",
+      "difficulty": "advanced",
+      "estimatedTime": "8 min"
+    }
+  ]
+}
