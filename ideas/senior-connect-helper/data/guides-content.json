@@ -1,0 +1,661 @@
+{
+  "wifi-vs-cellular": {
+    "steps": [
+      {
+        "title": "WiFi is like your home phone line",
+        "instruction": "WiFi is a wireless connection from a router in your home or building. It's like having a phone line, but for the internet. You need to be near the WiFi router (usually within your home) to use it.",
+        "tip": "WiFi is usually free to use in your home once you set it up."
+      },
+      {
+        "title": "Cellular Data is like your mobile phone network",
+        "instruction": "Cellular data comes from cell phone towers, just like your phone calls. You can use it anywhere you have cell phone reception, even away from home.",
+        "warning": "Cellular data may cost money based on your phone plan. Check with your phone company."
+      },
+      {
+        "title": "When to use WiFi",
+        "instruction": "Use WiFi when you're at home or in a place that offers free WiFi (like a coffee shop or library). WiFi is faster and doesn't use your cellular data plan.",
+        "tip": "Your phone will automatically use WiFi when it's available and you've connected to it before."
+      },
+      {
+        "title": "When to use Cellular Data",
+        "instruction": "Use cellular data when you're away from home and need to look something up, send a message, or use an app. It works wherever you have cell phone signal.",
+        "tip": "You can turn off cellular data to avoid charges. Go to Settings and look for 'Cellular' or 'Mobile Data'."
+      }
+    ],
+    "relatedGuides": ["connect-wifi", "data-usage", "wifi-toggle"]
+  },
+
+  "connect-wifi": {
+    "steps": [
+      {
+        "title": "Open Settings on your device",
+        "instruction": "On iPhone: Tap the gray gear icon called 'Settings'. On Android: Swipe down from the top of the screen and tap the gear icon.",
+        "tip": "The Settings app usually looks like a gear or cog wheel."
+      },
+      {
+        "title": "Find WiFi settings",
+        "instruction": "Look for 'WiFi' or 'Wi-Fi' in the Settings menu. Tap on it. You should see a list of available WiFi networks nearby.",
+        "tip": "If WiFi is turned off, you'll see a switch or toggle. Tap it to turn WiFi on."
+      },
+      {
+        "title": "Choose your network",
+        "instruction": "Look for your home WiFi network name in the list. It might be the name of your internet company or something you set up. Tap on the network name.",
+        "tip": "Your network name might be written on your WiFi router or in paperwork from your internet company."
+      },
+      {
+        "title": "Enter the password",
+        "instruction": "Type in your WiFi password carefully. Passwords are case-sensitive, meaning uppercase and lowercase letters matter.",
+        "warning": "The password is often printed on a sticker on your WiFi router. It might be called 'Password', 'Key', or 'Passphrase'."
+      },
+      {
+        "title": "Tap Connect or Join",
+        "instruction": "After entering the password, tap the 'Connect' or 'Join' button. Wait a few seconds. You should see a checkmark or 'Connected' appear.",
+        "tip": "Once connected, your device will remember this network and connect automatically next time."
+      }
+    ],
+    "relatedGuides": ["wifi-vs-cellular", "wifi-no-internet", "wifi-toggle"]
+  },
+
+  "wifi-no-internet": {
+    "steps": [
+      {
+        "title": "Check if you're connected to WiFi",
+        "instruction": "Look at the top of your screen for the WiFi symbol (looks like curved lines). If it's there, you're connected to WiFi, but the internet might not be working.",
+        "tip": "Just because you're connected to WiFi doesn't always mean the internet is working."
+      },
+      {
+        "title": "Try turning WiFi off and on",
+        "instruction": "Go to Settings, then WiFi. Turn WiFi off by tapping the switch, wait 10 seconds, then turn it back on. This often fixes the problem.",
+        "tip": "This is like restarting - it gives your phone a fresh connection."
+      },
+      {
+        "title": "Restart your WiFi router",
+        "instruction": "Find your WiFi router (the box with blinking lights). Unplug it from the power, wait 30 seconds, then plug it back in. Wait 2-3 minutes for it to fully restart.",
+        "warning": "Don't press any buttons on the router - just unplug and replug the power cord."
+      },
+      {
+        "title": "Check if others have internet",
+        "instruction": "Ask someone else in your home if their internet is working. If no one has internet, the problem is with your internet service, not your device.",
+        "tip": "If no one has internet, you may need to call your internet service provider."
+      },
+      {
+        "title": "Forget and reconnect to the network",
+        "instruction": "In Settings > WiFi, tap the (i) icon next to your network name. Tap 'Forget This Network'. Then reconnect by selecting it again and entering the password.",
+        "tip": "This clears any old connection problems and starts fresh."
+      }
+    ],
+    "relatedGuides": ["connect-wifi", "wifi-toggle", "data-usage"]
+  },
+
+  "wifi-toggle": {
+    "steps": [
+      {
+        "title": "Quick way: Use Control Center (iPhone)",
+        "instruction": "Swipe down from the top-right corner of the screen (or swipe up from bottom on older iPhones). Look for the WiFi symbol and tap it to turn WiFi on or off.",
+        "tip": "The WiFi symbol looks like curved lines, like a radio signal."
+      },
+      {
+        "title": "Quick way: Use Quick Settings (Android)",
+        "instruction": "Swipe down from the top of your screen. Look for the WiFi icon and tap it to turn WiFi on or off.",
+        "tip": "When WiFi is on, the icon is usually highlighted or colored. When off, it's gray."
+      },
+      {
+        "title": "Settings way: Open Settings",
+        "instruction": "Tap the Settings app (gear icon). Look for 'WiFi' or 'Wi-Fi' and tap it.",
+        "tip": "This method gives you more control and shows you all available networks."
+      },
+      {
+        "title": "Turn WiFi on or off",
+        "instruction": "You'll see a switch or toggle next to 'WiFi'. Tap it to turn WiFi on (green or blue) or off (gray).",
+        "tip": "Turning WiFi off can save battery, but your phone will use cellular data instead."
+      }
+    ],
+    "relatedGuides": ["wifi-vs-cellular", "connect-wifi", "battery-management"]
+  },
+
+  "data-usage": {
+    "steps": [
+      {
+        "title": "What uses data?",
+        "instruction": "Everything you do online uses data: browsing websites, watching videos, using apps, sending photos. Videos and photos use the most data. Texting (without photos) uses very little.",
+        "tip": "Streaming video uses the most data - one hour of video can use 1-3 GB!"
+      },
+      {
+        "title": "Check your data usage on iPhone",
+        "instruction": "Open Settings > Cellular or Mobile Data. Scroll down to see which apps use the most data. The numbers show how much data each app has used.",
+        "tip": "You can turn off cellular data for specific apps by tapping the switch next to them."
+      },
+      {
+        "title": "Check your data usage on Android",
+        "instruction": "Open Settings > Network & Internet > Data Usage. You'll see a graph showing your data use over time and which apps use the most data.",
+        "tip": "You can set a data warning to alert you when you're close to your limit."
+      },
+      {
+        "title": "How to use less data",
+        "instruction": "Use WiFi whenever possible. Download videos and music at home on WiFi before going out. Turn off automatic app updates when not on WiFi.",
+        "tip": "Many apps have a 'data saver' or 'WiFi only' mode in their settings."
+      },
+      {
+        "title": "Understanding your plan",
+        "instruction": "Your phone plan might include a certain amount of data each month (like 5GB). Once you use that much, you might be charged extra or slowed down. Check with your phone company to know your plan.",
+        "warning": "If you're not sure about your plan, call your phone company - they can explain what you have."
+      }
+    ],
+    "relatedGuides": ["wifi-vs-cellular", "battery-management", "notifications"]
+  },
+
+  "roku-wifi": {
+    "steps": [
+      {
+        "title": "Turn on your Roku and TV",
+        "instruction": "Make sure both your Roku device and TV are powered on. You should see the Roku home screen on your TV.",
+        "tip": "If you don't see the Roku screen, check that your TV is on the correct input/source."
+      },
+      {
+        "title": "Go to Settings",
+        "instruction": "Using your Roku remote, press the Home button (looks like a house). Use the arrow buttons to highlight 'Settings' and press OK.",
+        "tip": "The Home button is usually at the top of the Roku remote."
+      },
+      {
+        "title": "Select Network",
+        "instruction": "In Settings, scroll down to 'Network' and press OK. Then select 'Set up connection' and press OK.",
+        "tip": "You'll be asked if you want Wireless or Wired - choose Wireless for WiFi."
+      },
+      {
+        "title": "Choose your WiFi network",
+        "instruction": "Roku will scan for available WiFi networks. Use the arrow buttons to highlight your home network from the list and press OK.",
+        "tip": "Your network name might be on your WiFi router or internet company paperwork."
+      },
+      {
+        "title": "Enter your WiFi password",
+        "instruction": "A keyboard will appear on screen. Use the arrow buttons and OK button to spell out your password letter by letter. Be careful with uppercase and lowercase.",
+        "warning": "The password is case-sensitive. Take your time - it's easy to make a mistake."
+      },
+      {
+        "title": "Connect and test",
+        "instruction": "After entering the password, select 'Connect'. Roku will test the connection. When you see 'Success', you're connected!",
+        "tip": "Write down your WiFi password somewhere safe for next time you need it."
+      }
+    ],
+    "relatedGuides": ["find-netflix", "buffering-fix", "streaming-subscriptions"]
+  },
+
+  "find-netflix": {
+    "steps": [
+      {
+        "title": "Press the Home button",
+        "instruction": "On your Roku remote, press the Home button (looks like a house) to go to the main screen.",
+        "tip": "The Home button will always take you back to the main Roku screen."
+      },
+      {
+        "title": "Look for Netflix on your home screen",
+        "instruction": "Look through the apps on your home screen. Netflix has a red background with white letters. Use the arrow buttons to navigate through the apps.",
+        "tip": "Netflix might be in the first row of apps if you've used it before."
+      },
+      {
+        "title": "If you don't see Netflix, search for it",
+        "instruction": "Press the Home button, then scroll down to 'Search' and press OK. Type 'Netflix' using the on-screen keyboard.",
+        "tip": "You can use the purple star (*) button on your remote as a shortcut to search."
+      },
+      {
+        "title": "Add Netflix to your Roku",
+        "instruction": "If Netflix isn't installed, select it from search results and choose 'Add Channel'. Wait for it to download and install.",
+        "tip": "Netflix is free to download, but you need a Netflix subscription to watch shows."
+      },
+      {
+        "title": "Open Netflix",
+        "instruction": "Highlight the Netflix app and press OK to open it. You'll need to sign in with your Netflix account email and password.",
+        "warning": "If you don't have a Netflix account, you'll need to sign up at Netflix.com first."
+      }
+    ],
+    "relatedGuides": ["roku-wifi", "search-shows", "streaming-subscriptions"]
+  },
+
+  "search-shows": {
+    "steps": [
+      {
+        "title": "Open the streaming app",
+        "instruction": "First, open the app where you want to search (Netflix, Hulu, Prime Video, etc.). Make sure you're signed in.",
+        "tip": "Different apps have search in slightly different places, but they all have one."
+      },
+      {
+        "title": "Find the search icon",
+        "instruction": "Look for a magnifying glass icon 🔍. This is the search button. It's usually at the top of the screen or in the menu.",
+        "tip": "On Netflix, it's usually in the top row of options."
+      },
+      {
+        "title": "Click on search",
+        "instruction": "Use your remote's arrow buttons to highlight the search icon, then press OK or Select.",
+        "tip": "An on-screen keyboard should appear."
+      },
+      {
+        "title": "Type what you're looking for",
+        "instruction": "Use the arrow buttons on your remote to select letters and spell out the show or movie name. Press OK to select each letter.",
+        "tip": "You don't need to type the whole title - often just a few letters will show results."
+      },
+      {
+        "title": "Choose from the results",
+        "instruction": "As you type, you'll see results appear. Use the arrow buttons to browse through them. When you find what you want, highlight it and press OK.",
+        "tip": "Results usually show movie posters or show images to help you find the right one."
+      }
+    ],
+    "relatedGuides": ["find-netflix", "streaming-subscriptions", "roku-wifi"]
+  },
+
+  "streaming-subscriptions": {
+    "steps": [
+      {
+        "title": "What is a streaming subscription?",
+        "instruction": "A streaming subscription is like a membership to a video library. You pay a monthly fee and can watch as much as you want. It's like cable TV, but you can watch whenever you want.",
+        "tip": "Most services let you cancel anytime - you're not locked in like cable contracts."
+      },
+      {
+        "title": "Popular streaming services",
+        "instruction": "Netflix: Mostly original shows and movies. Hulu: Current TV shows and some movies. Prime Video: Comes with Amazon Prime membership. Disney+: Disney, Pixar, Marvel, Star Wars content.",
+        "tip": "You can subscribe to multiple services, but each one costs money monthly."
+      },
+      {
+        "title": "How much do they cost?",
+        "instruction": "Most cost between $7-15 per month. Some have ads (cheaper) and some don't (more expensive). Prices can change, so check the service's website for current pricing.",
+        "warning": "Make sure you know what you're signing up for - the subscription will renew every month automatically."
+      },
+      {
+        "title": "How to sign up",
+        "instruction": "Go to the service's website (like Netflix.com) on your computer or phone. Click 'Sign Up' or 'Try Free'. Enter your email, create a password, and add a payment method (credit card).",
+        "tip": "Many services offer a free trial for the first month - just remember to cancel before it ends if you don't want to pay."
+      },
+      {
+        "title": "Using your subscription on TV",
+        "instruction": "Once you've signed up, download the app on your Roku, Fire TV, or smart TV. Open the app and sign in with the email and password you created.",
+        "tip": "You can use the same subscription on your TV, phone, tablet, and computer."
+      }
+    ],
+    "relatedGuides": ["find-netflix", "safe-shopping", "two-factor-auth"]
+  },
+
+  "buffering-fix": {
+    "steps": [
+      {
+        "title": "What is buffering?",
+        "instruction": "Buffering is when your video keeps stopping to load. It happens when the video is downloading slower than you're watching it. The circle that spins is the 'buffering' symbol.",
+        "tip": "Buffering is almost always because of slow or unstable internet."
+      },
+      {
+        "title": "Check your internet speed",
+        "instruction": "Streaming needs fast internet. For HD video, you need at least 5 Mbps. You can check your speed at Fast.com on your phone or computer.",
+        "tip": "If your speed is less than 5 Mbps, that's why you're buffering."
+      },
+      {
+        "title": "Move closer to your WiFi router",
+        "instruction": "Your Roku or streaming device should be as close to your WiFi router as possible. Walls and distance weaken the signal.",
+        "tip": "If you can't move your router, consider moving your streaming device."
+      },
+      {
+        "title": "Restart your router",
+        "instruction": "Unplug your WiFi router, wait 30 seconds, plug it back in. Wait 2-3 minutes for it to fully restart. This often fixes buffering issues.",
+        "tip": "Do this regularly (once a month) to keep your internet running smoothly."
+      },
+      {
+        "title": "Close other apps and devices",
+        "instruction": "If other people are using the internet (downloading, gaming, watching other videos), it slows everyone down. Ask them to pause while you're streaming.",
+        "tip": "Streaming video uses a lot of internet bandwidth - more than almost anything else."
+      },
+      {
+        "title": "Lower the video quality",
+        "instruction": "In your streaming app's settings, look for 'Quality' or 'Video Quality'. Choose a lower quality option. The video won't look as sharp, but it won't buffer as much.",
+        "warning": "Some services automatically adjust quality - if buffering continues, your internet may be too slow for streaming."
+      }
+    ],
+    "relatedGuides": ["roku-wifi", "wifi-no-internet", "data-usage"]
+  },
+
+  "video-call": {
+    "steps": [
+      {
+        "title": "Choose your video calling app",
+        "instruction": "iPhone: FaceTime (built-in). Android: Google Duo or WhatsApp. Computer: Zoom or Skype. Ask the person you're calling what app they use.",
+        "tip": "Both people need to have the same app installed to video chat."
+      },
+      {
+        "title": "Open the app",
+        "instruction": "Find and tap the video calling app on your phone or computer. You may need to sign in or allow the app to use your camera and microphone.",
+        "warning": "The first time you use it, the app will ask to access your camera and microphone - tap 'Allow' or 'OK'."
+      },
+      {
+        "title": "Find the person you want to call",
+        "instruction": "Look for a contacts list or search box. Type the person's name, phone number, or email. Tap their name when it appears.",
+        "tip": "Make sure they've shared their account information with you (phone number or email)."
+      },
+      {
+        "title": "Start the video call",
+        "instruction": "Look for a video camera icon 📹 and tap it. This starts the video call. Wait while it connects - you'll hear a ringing sound.",
+        "tip": "Make sure you're in a well-lit room so the other person can see you clearly."
+      },
+      {
+        "title": "During the call",
+        "instruction": "You'll see the other person on most of your screen and yourself in a small box. Tap the screen to see buttons for muting your microphone or turning off your camera.",
+        "tip": "The mute button (microphone icon) stops them from hearing you. The camera button turns your video off."
+      },
+      {
+        "title": "End the call",
+        "instruction": "Look for a red phone icon or 'End' button. Tap it to hang up the call.",
+        "tip": "It's polite to wave goodbye before ending the call!"
+      }
+    ],
+    "relatedGuides": ["text-with-pictures", "notifications", "app-permissions"]
+  },
+
+  "text-with-pictures": {
+    "steps": [
+      {
+        "title": "Open your messaging app",
+        "instruction": "iPhone: Open the green 'Messages' app. Android: Open 'Messages' (might be different colors depending on your phone).",
+        "tip": "This is the same app you use to send regular text messages."
+      },
+      {
+        "title": "Start a new message or open a conversation",
+        "instruction": "Either tap the compose button (usually looks like a pencil or pen) to start a new message, or tap an existing conversation.",
+        "tip": "You can send pictures in both new and existing message threads."
+      },
+      {
+        "title": "Find the camera or photo icon",
+        "instruction": "Look for a camera icon 📷 or photo icon 🖼️ near where you type. It's usually to the left of the typing area.",
+        "tip": "Some phones have both a camera icon (to take a new photo) and a photo gallery icon (to choose an existing photo)."
+      },
+      {
+        "title": "Choose or take a photo",
+        "instruction": "Tap the photo icon to choose from your existing pictures, or tap the camera icon to take a new photo right now.",
+        "tip": "If choosing from existing photos, you can scroll through your photo library."
+      },
+      {
+        "title": "Select and send",
+        "instruction": "Tap the photo you want to send. You can add a text message too if you want. Then tap the send button (usually an arrow or 'Send').",
+        "warning": "Picture messages may use cellular data if you're not on WiFi. They might also cost more than regular texts depending on your plan."
+      }
+    ],
+    "relatedGuides": ["photos-sharing", "video-call", "data-usage"]
+  },
+
+  "notifications": {
+    "steps": [
+      {
+        "title": "What are notifications?",
+        "instruction": "Notifications are alerts from your apps. They appear on your screen or lock screen to tell you about new messages, emails, app updates, or other information.",
+        "tip": "Notifications help you stay informed, but too many can be overwhelming."
+      },
+      {
+        "title": "Where to find notifications",
+        "instruction": "iPhone: Swipe down from the top-left corner. Android: Swipe down from the top of the screen. You'll see a list of all recent notifications.",
+        "tip": "Tap a notification to open the app and see more details."
+      },
+      {
+        "title": "Clear notifications",
+        "instruction": "iPhone: Swipe left on a notification and tap 'Clear'. Android: Swipe the notification to the side. You can also tap 'Clear All' to remove all notifications at once.",
+        "tip": "Clearing notifications doesn't delete messages or emails - it just removes the alert."
+      },
+      {
+        "title": "Turn off notifications for an app",
+        "instruction": "Go to Settings > Notifications. Find the app in the list and tap it. Turn off 'Allow Notifications' to stop getting alerts from that app.",
+        "tip": "Do this for apps that send too many alerts or apps you don't use often."
+      },
+      {
+        "title": "Notification sounds",
+        "instruction": "Each notification can make a sound, vibrate, or show silently. You can change this in Settings > Notifications > [App Name] > Sounds.",
+        "warning": "If you're not getting notifications from an important app (like Messages), make sure notifications are turned on for that app."
+      }
+    ],
+    "relatedGuides": ["battery-management", "app-permissions", "text-with-pictures"]
+  },
+
+  "battery-management": {
+    "steps": [
+      {
+        "title": "Check your battery level",
+        "instruction": "Look at the top-right corner of your phone screen. You'll see a battery icon showing how much charge is left. You can also check in Settings > Battery for more details.",
+        "tip": "When the battery icon turns red or yellow, it's time to charge soon."
+      },
+      {
+        "title": "Turn down screen brightness",
+        "instruction": "Swipe down from the top of your screen to open Control Center or Quick Settings. Move the brightness slider toward the dim end.",
+        "tip": "Bright screens use the most battery. Lowering brightness can significantly extend battery life."
+      },
+      {
+        "title": "Turn off WiFi and Bluetooth when not using",
+        "instruction": "In Control Center or Quick Settings, tap the WiFi and Bluetooth icons to turn them off when you don't need them.",
+        "tip": "These features search for connections constantly, which uses battery power."
+      },
+      {
+        "title": "Close unused apps",
+        "instruction": "iPhone: Swipe up from the bottom and swipe up on app cards to close them. Android: Tap the square/recent apps button and swipe away apps.",
+        "warning": "You don't need to close apps constantly - only close ones that are draining battery or acting strange."
+      },
+      {
+        "title": "Enable Low Power Mode",
+        "instruction": "iPhone: Settings > Battery > Low Power Mode. Android: Settings > Battery > Battery Saver. This reduces background activity to extend battery life.",
+        "tip": "Use this when your battery is low and you won't be near a charger for a while."
+      },
+      {
+        "title": "Charge your phone properly",
+        "instruction": "Charge your phone before it gets below 20%. Don't need to wait until it's completely dead. You can charge it overnight - modern phones stop charging at 100%.",
+        "tip": "Use the charger that came with your phone or a certified replacement."
+      }
+    ],
+    "relatedGuides": ["wifi-toggle", "notifications", "data-usage"]
+  },
+
+  "photos-sharing": {
+    "steps": [
+      {
+        "title": "Open your Photos app",
+        "instruction": "Tap the Photos app on your phone. It usually has a colorful flower or pinwheel icon.",
+        "tip": "All photos you take are automatically saved here."
+      },
+      {
+        "title": "Find the photo you want to share",
+        "instruction": "Scroll through your photos or use the search function. Tap the photo to open it full screen.",
+        "tip": "You can share multiple photos at once by tapping 'Select' and choosing several."
+      },
+      {
+        "title": "Tap the share button",
+        "instruction": "Look for a square with an arrow pointing up (iPhone) or three dots/share icon (Android). Tap this button.",
+        "tip": "This button opens all your sharing options."
+      },
+      {
+        "title": "Choose how to share",
+        "instruction": "You'll see options like Messages, Email, Facebook, etc. Tap the one you want. For texting: tap Messages. For email: tap Mail.",
+        "tip": "The apps shown depend on what you have installed on your phone."
+      },
+      {
+        "title": "Choose who to send to",
+        "instruction": "Type the person's name, phone number, or email address. Then add a message if you want and tap Send.",
+        "warning": "Large photos sent via email might bounce back if they're too big. Text messages work better for sharing photos."
+      }
+    ],
+    "relatedGuides": ["text-with-pictures", "data-usage", "safe-shopping"]
+  },
+
+  "recognize-scams": {
+    "steps": [
+      {
+        "title": "Urgent or threatening language",
+        "instruction": "Scam emails often say things like 'Act NOW!', 'Your account will be closed!', or 'You owe money!'. Real companies rarely threaten you in emails.",
+        "warning": "If an email makes you panic, that's a red flag. Take a deep breath and don't click anything."
+      },
+      {
+        "title": "Check the sender's email address",
+        "instruction": "Click on or tap the sender's name to see the full email address. Scammers use addresses that look similar but aren't quite right, like 'support@bankofamerica-security.com' instead of '@bankofamerica.com'.",
+        "tip": "Real companies use their official domain name in emails (like @amazon.com, not @amazon-help.net)."
+      },
+      {
+        "title": "Look for spelling and grammar errors",
+        "instruction": "Professional companies proofread their emails. Scam emails often have obvious spelling mistakes, weird grammar, or strange phrasing.",
+        "tip": "If it reads like it was poorly translated or written in a hurry, it's probably a scam."
+      },
+      {
+        "title": "Never click suspicious links",
+        "instruction": "Don't click links in emails you weren't expecting, especially if they ask you to 'verify' your account or 'confirm' information. Instead, go directly to the company's website by typing it into your browser.",
+        "warning": "Hovering over a link (on computer) shows where it really goes - often it's not what it claims to be."
+      },
+      {
+        "title": "No real company asks for passwords via email",
+        "instruction": "Banks, Amazon, Netflix - none of them will ever ask you to email them your password or type it into a link from an email.",
+        "warning": "If you've already entered information on a suspicious site, contact your bank immediately and change your passwords."
+      },
+      {
+        "title": "When in doubt, verify directly",
+        "instruction": "If you get an email claiming to be from your bank, credit card, or other service, call them directly using the phone number on your card or statement - not the number in the email.",
+        "tip": "It's always better to be safe than sorry. Real companies won't mind you double-checking."
+      }
+    ],
+    "relatedGuides": ["strong-passwords", "safe-shopping", "two-factor-auth"]
+  },
+
+  "strong-passwords": {
+    "steps": [
+      {
+        "title": "Make it long",
+        "instruction": "Passwords should be at least 12 characters long. Longer is better. Instead of a password, think of a 'passphrase' - a sentence or group of words.",
+        "tip": "Example: 'ILove2DrinkCoffee!!' is much stronger than 'Coffee2024'"
+      },
+      {
+        "title": "Mix it up",
+        "instruction": "Use a combination of uppercase letters, lowercase letters, numbers, and symbols (!@#$%). Don't just use one type.",
+        "tip": "Replace letters with similar-looking numbers or symbols: 'o' becomes '0', 'a' becomes '@', 'i' becomes '!'"
+      },
+      {
+        "title": "Don't use personal information",
+        "instruction": "Avoid using your name, birthday, address, pet's name, or other information people could guess or find on social media.",
+        "warning": "Hackers look at your social media to guess passwords. 'Max2015' is weak if your dog Max was born in 2015."
+      },
+      {
+        "title": "Use different passwords for different accounts",
+        "instruction": "Don't use the same password everywhere. If one site gets hacked, all your accounts are at risk if they share a password.",
+        "tip": "Consider using a password manager app like LastPass or 1Password to remember different passwords."
+      },
+      {
+        "title": "Create memorable passwords",
+        "instruction": "One method: Think of a sentence and use the first letter of each word, plus numbers and symbols. 'I love to drink 2 cups of coffee every morning!' becomes 'Iltd2cocem!'",
+        "tip": "Another method: String together random words: 'Purple!Elephant67Dancing' - easy to remember, hard to guess."
+      },
+      {
+        "title": "Change passwords if there's a breach",
+        "instruction": "If a company emails you about a security breach, change your password immediately. Also change it if you notice suspicious activity.",
+        "warning": "You don't need to change passwords regularly unless there's a reason - just make sure they're strong."
+      }
+    ],
+    "relatedGuides": ["two-factor-auth", "recognize-scams", "safe-shopping"]
+  },
+
+  "app-permissions": {
+    "steps": [
+      {
+        "title": "What are app permissions?",
+        "instruction": "Permissions are things apps ask to access on your phone: your camera, microphone, location, photos, contacts, etc. Apps ask for these when they need them to work.",
+        "tip": "A camera app needs camera permission to work, but a flashlight app doesn't need your contacts."
+      },
+      {
+        "title": "When apps ask for permissions",
+        "instruction": "The first time an app needs a permission, a pop-up will ask 'Allow [App] to access your [Camera/Location/etc]?' Read this carefully before tapping Allow.",
+        "warning": "Don't just tap 'Allow' automatically. Think: Does this app really need this to work?"
+      },
+      {
+        "title": "Check your existing permissions",
+        "instruction": "iPhone: Settings > Privacy. Android: Settings > Apps > Permissions. You'll see a list of permission types (Camera, Location, etc.) and which apps have access.",
+        "tip": "Review this list occasionally. You might be surprised what apps have access to."
+      },
+      {
+        "title": "Turn off unnecessary permissions",
+        "instruction": "Tap any permission category, then tap an app to change its access. Choose 'Never' to deny permission, or 'While Using' to only allow when the app is open.",
+        "tip": "Location is often the biggest privacy concern. Most apps don't need it 'Always' - choose 'While Using' instead."
+      },
+      {
+        "title": "Common permissions explained",
+        "instruction": "Camera: Taking photos. Microphone: Recording audio. Location: Knowing where you are. Photos: Accessing your photo library. Contacts: Reading your contact list.",
+        "tip": "If an app stops working after you deny permission, you can always go back and allow it."
+      },
+      {
+        "title": "Be cautious with new apps",
+        "instruction": "When downloading a new app, read reviews and check what permissions it requests. If a simple game wants access to your contacts and location, that's suspicious.",
+        "warning": "Only download apps from official app stores (Apple App Store or Google Play Store), not from random websites."
+      }
+    ],
+    "relatedGuides": ["two-factor-auth", "recognize-scams", "notifications"]
+  },
+
+  "safe-shopping": {
+    "steps": [
+      {
+        "title": "Shop only on secure websites",
+        "instruction": "Before entering credit card info, check the website address. It should start with 'https://' (notice the 's'). You might also see a padlock icon in the address bar.",
+        "tip": "The 's' in 'https' means the connection is secure and encrypted."
+      },
+      {
+        "title": "Use trusted websites",
+        "instruction": "Stick to well-known retailers you recognize: Amazon, Target, Walmart, etc. If it's a new site, search for reviews before buying.",
+        "warning": "If a deal seems too good to be true (iPhone for $100), it's probably a scam."
+      },
+      {
+        "title": "Never save credit cards on unfamiliar sites",
+        "instruction": "It's okay to save your credit card on Amazon or other major retailers, but don't save it on small websites you've never used before.",
+        "tip": "Consider using PayPal when possible - it adds an extra layer of protection between your credit card and the seller."
+      },
+      {
+        "title": "Check your statements regularly",
+        "instruction": "Review your credit card and bank statements at least once a month. Look for charges you don't recognize, even small ones.",
+        "warning": "If you see suspicious charges, call your bank immediately. They can cancel the card and refund fraudulent purchases."
+      },
+      {
+        "title": "Be careful with email shopping links",
+        "instruction": "Don't click shopping links in emails unless you were expecting them. Scammers send fake emails that look like they're from Amazon, FedEx, etc.",
+        "tip": "Instead of clicking email links, go directly to the company's website by typing it into your browser."
+      },
+      {
+        "title": "Use credit cards, not debit cards",
+        "instruction": "Credit cards offer better fraud protection than debit cards. If someone steals your credit card info, it's the bank's money at risk, not yours.",
+        "tip": "You can dispute credit card charges more easily than debit card charges."
+      }
+    ],
+    "relatedGuides": ["recognize-scams", "strong-passwords", "two-factor-auth"]
+  },
+
+  "two-factor-auth": {
+    "steps": [
+      {
+        "title": "What is two-factor authentication?",
+        "instruction": "Two-factor authentication (2FA) is an extra security step when logging in. Even if someone knows your password, they can't get in without the second factor (usually a code sent to your phone).",
+        "tip": "Think of it like having two locks on your door instead of one."
+      },
+      {
+        "title": "Why you should use it",
+        "instruction": "2FA protects your accounts even if someone steals your password. They would also need your phone to get the security code, which they don't have.",
+        "tip": "Enable 2FA on important accounts: email, banking, social media, shopping sites."
+      },
+      {
+        "title": "How to turn on 2FA",
+        "instruction": "Go to the website's security settings (usually under Account > Security or Settings > Security). Look for 'Two-Factor Authentication', 'Two-Step Verification', or '2FA' and follow the setup steps.",
+        "tip": "Each website has slightly different steps, but they all ask for your phone number or authentication app."
+      },
+      {
+        "title": "Getting codes via text message",
+        "instruction": "The most common 2FA method: Enter your phone number, and you'll receive a text with a 6-digit code each time you log in from a new device.",
+        "warning": "You'll need your phone nearby to log in. Don't let this discourage you - the security is worth the small inconvenience."
+      },
+      {
+        "title": "Using an authenticator app",
+        "instruction": "For better security, use an app like Google Authenticator or Authy instead of text messages. These apps generate codes even without cell service.",
+        "tip": "Authenticator apps are more secure than text messages and work even when traveling abroad."
+      },
+      {
+        "title": "Save backup codes",
+        "instruction": "When setting up 2FA, most services give you backup codes. Write these down and keep them somewhere safe. Use them if you lose your phone.",
+        "warning": "Without backup codes, losing your phone could lock you out of your account."
+      },
+      {
+        "title": "What happens when logging in",
+        "instruction": "After entering your password, you'll be asked for a code. Check your phone for a text message or open your authenticator app, then enter the 6-digit code.",
+        "tip": "Most sites let you check 'Trust this device' so you won't need a code every single time on your home computer."
+      }
+    ],
+    "relatedGuides": ["strong-passwords", "app-permissions", "recognize-scams"]
+  }
+}
