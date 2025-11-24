@@ -3,58 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Track Windows 10 vulnerabilities since end of support">
-    <meta name="theme-color" content="#3b82f6">
-    <title>Windows 10 Security Tracker | CC-Ideas</title>
+    <meta name="description" content="Track Windows 10 vulnerabilities and exploits since end of support - data-driven security insights">
+    <meta name="theme-color" content="#ef4444">
+    <title>Windows 10 Security Tracker | Track Vulnerabilities Since EOL</title>
+
+    <!-- Shared Styles -->
     <link rel="stylesheet" href="../../shared/styles/mobile-first.css">
-    <style>
-        .coming-soon {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 60vh;
-            text-align: center;
-            padding: var(--spacing-xl);
-        }
-        .coming-soon h1 {
-            font-size: var(--font-size-4xl);
-            margin-bottom: var(--spacing-md);
-        }
-        .coming-soon p {
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin-bottom: var(--spacing-xl);
-        }
-        .emoji {
-            font-size: 80px;
-            margin-bottom: var(--spacing-lg);
-        }
-    </style>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Chart.js for visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
 </head>
 <body>
-    <header>
-        <nav>
+    <header class="header">
+        <nav class="nav">
             <a href="../../index.html" class="back-link">← All Prototypes</a>
         </nav>
+        <div class="header-content container">
+            <h1 class="header-title">Windows 10 Security Tracker</h1>
+            <p class="header-subtitle">Tracking vulnerabilities since end of support</p>
+        </div>
     </header>
 
     <main class="container">
-        <div class="coming-soon">
-            <div class="emoji">🔒📊</div>
-            <h1>Windows 10 Security Tracker</h1>
-            <p>Track virus growth and exploit count since Windows 10 end of support. Data-driven insights to help understand the security implications.</p>
-            <div class="alert alert-info">
-                <strong>Status:</strong> Coming Soon! This prototype is in the planning phase.
-                <br><br>
-                See <a href="SPEC.md">SPEC.md</a> for detailed specifications and planned features.
+        <!-- Hero Section with EOL Notice -->
+        <section class="hero-section">
+            <div class="eol-notice">
+                <div class="eol-icon">⚠️</div>
+                <div class="eol-content">
+                    <h2>Windows 10 Reached End of Support</h2>
+                    <p class="eol-date">October 14, 2025</p>
+                    <p class="days-counter">
+                        <span class="counter-number" id="days-since-eol">0</span>
+                        <span class="counter-label">days without security updates</span>
+                    </p>
+                </div>
             </div>
-            <a href="../../index.html" class="btn btn-primary mt-lg">Back to All Prototypes</a>
-        </div>
+        </section>
+
+        <!-- Key Metrics Dashboard -->
+        <section class="metrics-section">
+            <h2 class="section-title">Current Threat Landscape</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon">🔓</div>
+                    <div class="metric-value" id="total-exploits">0</div>
+                    <div class="metric-label">Total Vulnerabilities</div>
+                    <div class="metric-trend" id="total-trend">
+                        <span class="trend-icon">↑</span>
+                        <span class="trend-value">Loading...</span>
+                    </div>
+                </div>
+
+                <div class="metric-card critical">
+                    <div class="metric-icon">🚨</div>
+                    <div class="metric-value" id="critical-exploits">0</div>
+                    <div class="metric-label">Critical Severity</div>
+                    <div class="metric-trend" id="critical-trend">
+                        <span class="trend-icon">↑</span>
+                        <span class="trend-value">Loading...</span>
+                    </div>
+                </div>
+
+                <div class="metric-card warning">
+                    <div class="metric-icon">⚡</div>
+                    <div class="metric-value" id="exploited-wild">0</div>
+                    <div class="metric-label">Actively Exploited</div>
+                    <div class="metric-trend">
+                        <span class="trend-badge">In the Wild</span>
+                    </div>
+                </div>
+
+                <div class="metric-card info">
+                    <div class="metric-icon">📅</div>
+                    <div class="metric-value" id="this-week">0</div>
+                    <div class="metric-label">New This Week</div>
+                    <div class="metric-trend" id="week-comparison">
+                        <span class="trend-value">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Chart -->
+        <section class="chart-section">
+            <div class="section-header">
+                <h2 class="section-title">Vulnerability Growth Timeline</h2>
+                <div class="chart-controls">
+                    <button class="btn-control active" data-period="all">All Time</button>
+                    <button class="btn-control" data-period="6m">6 Months</button>
+                    <button class="btn-control" data-period="3m">3 Months</button>
+                    <button class="btn-control" data-period="1m">1 Month</button>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="timeline-chart"></canvas>
+            </div>
+            <p class="chart-caption">Cumulative count of vulnerabilities discovered since Windows 10 end of support</p>
+        </section>
+
+        <!-- Severity Breakdown -->
+        <section class="breakdown-section">
+            <h2 class="section-title">Severity Distribution</h2>
+            <div class="breakdown-grid">
+                <div class="breakdown-chart">
+                    <canvas id="severity-chart"></canvas>
+                </div>
+                <div class="breakdown-stats">
+                    <div class="severity-item critical">
+                        <div class="severity-bar">
+                            <div class="severity-fill" id="critical-bar" style="width: 0%"></div>
+                        </div>
+                        <div class="severity-info">
+                            <span class="severity-label">Critical</span>
+                            <span class="severity-count" id="critical-count">0</span>
+                        </div>
+                    </div>
+                    <div class="severity-item high">
+                        <div class="severity-bar">
+                            <div class="severity-fill" id="high-bar" style="width: 0%"></div>
+                        </div>
+                        <div class="severity-info">
+                            <span class="severity-label">High</span>
+                            <span class="severity-count" id="high-count">0</span>
+                        </div>
+                    </div>
+                    <div class="severity-item medium">
+                        <div class="severity-bar">
+                            <div class="severity-fill" id="medium-bar" style="width: 0%"></div>
+                        </div>
+                        <div class="severity-info">
+                            <span class="severity-label">Medium</span>
+                            <span class="severity-count" id="medium-count">0</span>
+                        </div>
+                    </div>
+                    <div class="severity-item low">
+                        <div class="severity-bar">
+                            <div class="severity-fill" id="low-bar" style="width: 0%"></div>
+                        </div>
+                        <div class="severity-info">
+                            <span class="severity-label">Low</span>
+                            <span class="severity-count" id="low-count">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vulnerability List -->
+        <section class="vulnerabilities-section">
+            <div class="section-header">
+                <h2 class="section-title">Recent Vulnerabilities</h2>
+                <div class="filters-controls">
+                    <input type="search" id="search-input" class="search-input" placeholder="Search CVE ID or description...">
+                    <select id="severity-filter" class="filter-select">
+                        <option value="all">All Severities</option>
+                        <option value="CRITICAL">Critical</option>
+                        <option value="HIGH">High</option>
+                        <option value="MEDIUM">Medium</option>
+                        <option value="LOW">Low</option>
+                    </select>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="exploited-filter">
+                        <span>Actively Exploited Only</span>
+                    </label>
+                </div>
+            </div>
+
+            <div id="vulnerabilities-list" class="vulnerabilities-list">
+                <div class="loading-state">
+                    <div class="spinner"></div>
+                    <p>Loading vulnerability data...</p>
+                </div>
+            </div>
+
+            <button id="load-more" class="btn btn-secondary" style="display: none;">
+                Load More Vulnerabilities
+            </button>
+        </section>
+
+        <!-- Recommendations Section -->
+        <section class="recommendations-section">
+            <h2 class="section-title">What You Should Do</h2>
+            <div class="recommendations-grid">
+                <div class="recommendation-card primary">
+                    <div class="recommendation-icon">✅</div>
+                    <h3>Upgrade to Windows 11</h3>
+                    <p>The safest option is to upgrade to Windows 11, which continues to receive security updates.</p>
+                    <a href="https://www.microsoft.com/windows/windows-11" target="_blank" rel="noopener" class="btn btn-primary">
+                        Check Compatibility →
+                    </a>
+                </div>
+
+                <div class="recommendation-card">
+                    <div class="recommendation-icon">💰</div>
+                    <h3>Extended Security Updates</h3>
+                    <p>Enterprise and Education editions can purchase Extended Security Updates (ESU) for up to 3 years.</p>
+                    <a href="https://learn.microsoft.com/windows/whats-new/extended-security-updates" target="_blank" rel="noopener" class="btn btn-secondary">
+                        Learn More →
+                    </a>
+                </div>
+
+                <div class="recommendation-card">
+                    <div class="recommendation-icon">🐧</div>
+                    <h3>Consider Linux</h3>
+                    <p>If your hardware doesn't support Windows 11, Linux distributions like Ubuntu offer a secure alternative.</p>
+                    <a href="https://ubuntu.com/download" target="_blank" rel="noopener" class="btn btn-secondary">
+                        Explore Options →
+                    </a>
+                </div>
+
+                <div class="recommendation-card warning">
+                    <div class="recommendation-icon">🛡️</div>
+                    <h3>If You Must Stay on Windows 10</h3>
+                    <ul class="recommendation-list">
+                        <li>Use robust antivirus software</li>
+                        <li>Enable Windows Firewall</li>
+                        <li>Don't run as administrator</li>
+                        <li>Keep other software updated</li>
+                        <li>Avoid suspicious downloads</li>
+                        <li>Back up your data regularly</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Sources Section -->
+        <section class="sources-section">
+            <h2 class="section-title">Data Sources & Methodology</h2>
+            <div class="sources-grid">
+                <div class="source-card">
+                    <h3>National Vulnerability Database (NVD)</h3>
+                    <p>U.S. government repository of standards-based vulnerability management data</p>
+                    <a href="https://nvd.nist.gov/" target="_blank" rel="noopener">nvd.nist.gov →</a>
+                </div>
+                <div class="source-card">
+                    <h3>CISA Known Exploited Vulnerabilities</h3>
+                    <p>Catalog of vulnerabilities known to be actively exploited in the wild</p>
+                    <a href="https://www.cisa.gov/known-exploited-vulnerabilities" target="_blank" rel="noopener">cisa.gov →</a>
+                </div>
+                <div class="source-card">
+                    <h3>Microsoft Security Response Center</h3>
+                    <p>Official Microsoft security advisories and updates</p>
+                    <a href="https://msrc.microsoft.com/" target="_blank" rel="noopener">msrc.microsoft.com →</a>
+                </div>
+            </div>
+
+            <div class="methodology">
+                <h3>Methodology</h3>
+                <p>This tracker monitors publicly disclosed vulnerabilities (CVEs) affecting Windows 10 that were published after the end of support date (October 14, 2025). Data is updated daily from official sources. Severity ratings are based on CVSS v3.1 scores. "Actively Exploited" status is confirmed by CISA's Known Exploited Vulnerabilities catalog.</p>
+                <p class="last-updated">Last Updated: <span id="last-update-time">Loading...</span></p>
+            </div>
+        </section>
     </main>
 
-    <footer>
-        <p>Part of <a href="../../index.html">CC-Ideas</a> prototypes collection</p>
+    <footer class="footer">
+        <div class="container">
+            <p>Part of <a href="../../index.html">CC-Ideas</a> prototypes collection</p>
+            <p class="disclaimer">This tool is for informational purposes only. Always verify security information from official sources.</p>
+        </div>
     </footer>
+
+    <!-- Application JavaScript -->
+    <script src="app.js"></script>
 </body>
 </html>
