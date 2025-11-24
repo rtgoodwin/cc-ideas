@@ -3,58 +3,279 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Track Lego sets with barcode scanning and price history">
+    <meta name="description" content="Track your Lego collection with barcode scanning and price history">
     <meta name="theme-color" content="#3b82f6">
     <title>Lego Set Tracker | CC-Ideas</title>
     <link rel="stylesheet" href="../../shared/styles/mobile-first.css">
-    <style>
-        .coming-soon {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 60vh;
-            text-align: center;
-            padding: var(--spacing-xl);
-        }
-        .coming-soon h1 {
-            font-size: var(--font-size-4xl);
-            margin-bottom: var(--spacing-md);
-        }
-        .coming-soon p {
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin-bottom: var(--spacing-xl);
-        }
-        .emoji {
-            font-size: 80px;
-            margin-bottom: var(--spacing-lg);
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <nav>
+    <header class="app-header">
+        <nav class="nav-bar">
             <a href="../../index.html" class="back-link">← All Prototypes</a>
+            <h1 class="app-title">🧱 Lego Tracker</h1>
+            <button id="statsBtn" class="icon-btn" aria-label="View Statistics">
+                <span class="icon">📊</span>
+            </button>
         </nav>
     </header>
 
     <main class="container">
-        <div class="coming-soon">
-            <div class="emoji">🧱📦</div>
-            <h1>Lego Set Tracker</h1>
-            <p>Track retired Lego sets by scanning barcodes, maintain your collection library, and visualize price charts over time.</p>
-            <div class="alert alert-info">
-                <strong>Status:</strong> Coming Soon! This prototype is in the planning phase.
-                <br><br>
-                See <a href="SPEC.md">SPEC.md</a> for detailed specifications and planned features.
+        <!-- Welcome Screen (shown when no sets) -->
+        <div id="welcomeScreen" class="welcome-screen" style="display: none;">
+            <div class="welcome-content">
+                <div class="welcome-icon">🧱</div>
+                <h2>Welcome to Lego Tracker</h2>
+                <p>Track your Lego collection, monitor prices, and discover insights about your sets.</p>
+                <div class="welcome-features">
+                    <div class="feature-item">
+                        <span class="feature-icon">📷</span>
+                        <span>Scan Barcodes</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">📈</span>
+                        <span>Track Prices</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">📊</span>
+                        <span>View Stats</span>
+                    </div>
+                </div>
+                <button id="addFirstSetBtn" class="btn btn-primary btn-lg">Add Your First Set</button>
             </div>
-            <a href="../../index.html" class="btn btn-primary mt-lg">Back to All Prototypes</a>
         </div>
+
+        <!-- Main Collection View -->
+        <div id="collectionView" style="display: none;">
+            <!-- Summary Cards -->
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <div class="summary-label">Total Sets</div>
+                    <div class="summary-value" id="totalSets">0</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-label">Collection Value</div>
+                    <div class="summary-value" id="totalValue">$0</div>
+                    <div class="summary-change" id="valueChange"></div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-label">Total Pieces</div>
+                    <div class="summary-value" id="totalPieces">0</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-label">Total Minifigs</div>
+                    <div class="summary-value" id="totalMinifigs">0</div>
+                </div>
+            </div>
+
+            <!-- Filters and Search -->
+            <div class="controls-section">
+                <div class="search-bar">
+                    <input type="search" id="searchInput" placeholder="Search sets..." class="search-input">
+                </div>
+                <div class="filter-row">
+                    <select id="sortSelect" class="select-input" aria-label="Sort by">
+                        <option value="date-desc">Newest First</option>
+                        <option value="date-asc">Oldest First</option>
+                        <option value="name-asc">Name (A-Z)</option>
+                        <option value="name-desc">Name (Z-A)</option>
+                        <option value="value-desc">Highest Value</option>
+                        <option value="value-asc">Lowest Value</option>
+                        <option value="pieces-desc">Most Pieces</option>
+                    </select>
+                    <select id="themeFilter" class="select-input" aria-label="Filter by theme">
+                        <option value="all">All Themes</option>
+                    </select>
+                    <select id="statusFilter" class="select-input" aria-label="Filter by status">
+                        <option value="all">All Status</option>
+                        <option value="sealed">Sealed</option>
+                        <option value="opened">Opened</option>
+                        <option value="built">Built</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Sets Grid -->
+            <div id="setsGrid" class="sets-grid">
+                <!-- Sets will be rendered here -->
+            </div>
+
+            <!-- Empty State (when filtered results are empty) -->
+            <div id="emptyState" class="empty-state" style="display: none;">
+                <div class="empty-icon">🔍</div>
+                <p>No sets found matching your filters.</p>
+                <button id="clearFiltersBtn" class="btn btn-outline">Clear Filters</button>
+            </div>
+        </div>
+
+        <!-- Floating Action Button -->
+        <button id="addSetBtn" class="fab" aria-label="Add Set" style="display: none;">
+            <span class="fab-icon">+</span>
+        </button>
     </main>
 
-    <footer>
-        <p>Part of <a href="../../index.html">CC-Ideas</a> prototypes collection</p>
-    </footer>
+    <!-- Add Set Modal -->
+    <div id="addSetModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Set to Collection</h2>
+                <button class="modal-close" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="add-methods">
+                    <button id="scanBarcodeBtn" class="method-btn">
+                        <span class="method-icon">📷</span>
+                        <span class="method-text">Scan Barcode</span>
+                    </button>
+                    <button id="manualEntryBtn" class="method-btn">
+                        <span class="method-icon">⌨️</span>
+                        <span class="method-text">Manual Entry</span>
+                    </button>
+                    <button id="browsePopularBtn" class="method-btn">
+                        <span class="method-icon">🔥</span>
+                        <span class="method-text">Browse Popular</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scanner Modal -->
+    <div id="scannerModal" class="modal">
+        <div class="modal-content scanner-modal">
+            <div class="scanner-header">
+                <h2>Scan Barcode</h2>
+                <button class="modal-close" aria-label="Close">&times;</button>
+            </div>
+            <div class="scanner-container">
+                <div class="scanner-viewfinder">
+                    <div class="scanner-overlay">
+                        <div class="scanner-line"></div>
+                    </div>
+                    <p class="scanner-instruction">Position barcode within the frame</p>
+                </div>
+                <div class="scanner-controls">
+                    <button id="torchBtn" class="btn btn-outline">
+                        <span>💡</span> Flashlight
+                    </button>
+                    <button id="manualCodeBtn" class="btn btn-outline">Enter Code Manually</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Manual Entry Modal -->
+    <div id="manualEntryModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Manual Entry</h2>
+                <button class="modal-close" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="manualEntryForm">
+                    <div class="form-group">
+                        <label for="setNumber">Set Number *</label>
+                        <input type="text" id="setNumber" required placeholder="e.g., 10497, 21336">
+                        <small>Enter the set number (without dashes)</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Look Up Set</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Browse Popular Modal -->
+    <div id="browsePopularModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Browse Popular Sets</h2>
+                <button class="modal-close" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="popularSetsGrid" class="popular-sets-grid">
+                    <!-- Popular sets will be rendered here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Set Details Modal -->
+    <div id="setDetailsModal" class="modal">
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h2 id="setDetailsTitle">Set Details</h2>
+                <button class="modal-close" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="setDetailsContent">
+                    <!-- Set details will be rendered here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Purchase Info Modal -->
+    <div id="purchaseInfoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Purchase Information</h2>
+                <button class="modal-close" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="purchaseInfoForm">
+                    <input type="hidden" id="purchaseSetNumber">
+
+                    <div class="form-group">
+                        <label for="purchasePrice">Purchase Price *</label>
+                        <input type="number" id="purchasePrice" required step="0.01" min="0" placeholder="0.00">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="purchaseDate">Purchase Date</label>
+                        <input type="date" id="purchaseDate">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="purchaseLocation">Purchase Location</label>
+                        <input type="text" id="purchaseLocation" placeholder="e.g., LEGO Store, Amazon">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="condition">Condition *</label>
+                        <select id="condition" required>
+                            <option value="sealed">Sealed (Never Opened)</option>
+                            <option value="opened">Opened (Not Built)</option>
+                            <option value="built">Built</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">Notes</label>
+                        <textarea id="notes" rows="3" placeholder="Additional notes about this set..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Add to Collection</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistics Modal -->
+    <div id="statsModal" class="modal">
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h2>Collection Statistics</h2>
+                <button class="modal-close" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="statsContent">
+                    <!-- Stats will be rendered here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../shared/scripts/utils.js"></script>
+    <script type="module" src="app.js"></script>
 </body>
 </html>
